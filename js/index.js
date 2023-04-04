@@ -185,12 +185,20 @@ const { createApp } = Vue
         visible: '',
         id: '',
       },
+      newAdd: {
+        name: '',
+        avatar: '',
+        messages: '',
+        visible: '',
+        id: '',
+      },
 
       current: 0,
       messageText: '',
       usersFilter: '',
       writing: 'sto scrivendo...',
       writingStatus: false,
+      addUser: false,
         
       }
     },
@@ -198,16 +206,23 @@ const { createApp } = Vue
       clickList(items, key){
         // items.visible = !items.visible;
         this.current = key - 1;
-    
+
+
         const newSelect = this.contacts.find(items => items.id === key)
+        let hours = ""
+        newSelect.messages.forEach((data) =>{
+            let dataComplete = data.date.split(" ");
+            hours = dataComplete[dataComplete.length - 1]
+            console.log(hours)
+        })
+
         this.userSelect = {
             name: newSelect.name,
             avatar: newSelect.avatar,
             messages: newSelect.messages,
-            lastSeen: newSelect.lastSeen,
             visible: newSelect.visible,
             id: newSelect.id,
-        }   
+        }  
       },
       scrollmessage(){
         this.$nextTick(() => {
@@ -240,7 +255,6 @@ const { createApp } = Vue
             this.writingStatus = false
             this.contacts[this.current].messages.push(respMessage);
             this.scrollmessage()
-    
             
         }, 2000)
       }, 
@@ -253,7 +267,28 @@ const { createApp } = Vue
                 user.visible = true
             }
         })
-      }
+      },
+      deleteMessage(index){
+        this.userSelect.messages.splice(index, 1)
+      },
+      openAddContact(){
+        this.addUser = !this.addUser
+      },
+      addContact(){
+        console.log("add")
+        this.addUser = false
+        this.newAdd = {
+            name: '',
+            avatar: '',
+            messages: '',
+            lastSeen: '',
+            visible: '',
+            id: '',
+        }
+        this.contacts.push(this.newAdd)
+        console.log(this.contacts)
+         
+      },
     },
     computed:{
         

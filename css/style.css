@@ -132,6 +132,21 @@ img{
     border-radius: 0.5em;
 }
 
+select{
+    width: 0 !important;
+}
+.pop-up{
+    bottom: -42px;
+    right: 10px;
+    z-index: 9000;
+    border-radius: 5px 0 5px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 40px;
+}
+
 
 
 

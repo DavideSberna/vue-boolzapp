@@ -22,7 +22,12 @@
                     <ul class="p-0 m-0 d-flex">
                         <li><a href="#"><i class="fa-solid fa-rotate-right"></i></a></li>
                         <li><a href="#"><i class="fa-solid fa-message ms-3"></i></a></li>
-                        <li><a href="#"><i class="fa-solid fa-ellipsis-vertical ms-3 me-2"></i></a></li>
+                        <li class="position-relative"><a href="#"><i class="fa-solid fa-ellipsis-vertical ms-3 me-2" @click="openAddContact"></i></a>
+                            <div class="bg-light-subtle position-absolute pop-up" v-if="addUser">
+                                <p class="m-0" @click="addContact">Aggiungi</p>
+                            </div>
+                        </li>
+                        
                     </ul>
                 </div>
                 <div class="notifications d-flex align-items-center p-2">
@@ -80,7 +85,7 @@
                         <li class="circle me-2"><img :src="contacts[current].avatar" alt=""></li>
                         <li>
                             <span class="d-block">{{contacts[current].name}}</span>
-                            <span v-if="!writingStatus">Ultimo accesso: {{contacts[current].messages[contacts[current].messages.length - 1].date}}</span>   
+                            <span v-if="!writingStatus">Ultimo accesso: {{contacts[current]?.messages[contacts[current].messages.length - 1].date}}</span>   
                             <span v-if="writingStatus">{{writing}}</span>   
                         </li>
                     </ul>
@@ -95,15 +100,24 @@
             <section>
                 <div>
                     <div >
-                        <div v-for="items in userSelect.messages" ref="scroll">
+                        <div v-for="(items, index) in userSelect.messages" ref="scroll">
                             <div v-if="items.status === 'sent'" class="send">
                                 <div>
                                     <div>
-                                        <div class="p-1">
-                                            {{items.message}}
+                                        <div>
+                                            <div class="p-1">
+                                                {{items.message}}
+                                            </div>
+                                            <div class="p-1">
+                                                <select class="form-select" aria-label="select example">
+                                                    <option value="elimina" @click="deleteMessage(index)">Elimina</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                        <div class="p-1">
-                                            {{items.date}}
+                                        <div>
+                                            <div class="p-1">
+                                                {{items.date}}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -111,8 +125,15 @@
                             <div v-if="items.status === 'received'" class="received">
                                 <div>
                                     <div>
-                                        <div class="p-1">
-                                            {{items.message}}
+                                        <div>
+                                            <div class="p-1">
+                                                {{items.message}}
+                                            </div>
+                                            <div class="p-1">
+                                                <select class="form-select" aria-label="select example">
+                                                    <option value="elimina" @click="deleteMessage(index)">Elimina</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="p-1">
                                             {{items.date}}
