@@ -196,7 +196,7 @@ const { createApp } = Vue
     },
     methods: {
       clickList(items, key){
-        items.visible = !items.visible;
+        // items.visible = !items.visible;
         this.current = key - 1;
     
         const newSelect = this.contacts.find(items => items.id === key)
@@ -216,13 +216,15 @@ const { createApp } = Vue
 
       },
       messageSent(){
-       
+        // console.log(this.messageText)
         const newMessage = {
                 date: '19.22.00',
                 message: this.messageText,
                 status: 'sent'
         }
         this.contacts[this.current].messages.push(newMessage)
+        // console.log(newMessage)
+        // console.log(this.contacts[this.current].messages)
 
         const respMessage = {
                 date: '33.22.00',
