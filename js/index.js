@@ -185,14 +185,20 @@ const { createApp } = Vue
         visible: '',
         id: '',
       },
+
+      current: 0,
+      messageText: '',
+      usersFilter: '',
+      writing: 'sto scrivendo...',
+      writingStatus: false,
         
       }
     },
     methods: {
       clickList(items, key){
-        items.visible = !items.visible
-
-
+        items.visible = !items.visible;
+        this.current = key - 1;
+    
         const newSelect = this.contacts.find(items => items.id === key)
         this.userSelect = {
             name: newSelect.name,
@@ -201,8 +207,53 @@ const { createApp } = Vue
             lastSeen: newSelect.lastSeen,
             visible: newSelect.visible,
             id: newSelect.id,
-        }  
-        
+        }   
+      },
+      scrollmessage(){
+        this.$nextTick(() => {
+            this.$refs.scroll[this.$refs.scroll.length - 1].scrollIntoView({behavior: 'smooth'})
+        })
+
+      },
+      messageSent(){
+       
+        const newMessage = {
+                date: '19.22.00',
+                message: this.messageText,
+                status: 'sent'
+        }
+        this.contacts[this.current].messages.push(newMessage)
+
+        const respMessage = {
+                date: '33.22.00',
+                message: 'ok',
+                status: 'received'
+        }
+        setTimeout(()=>{
+            console.log(this.writing)
+            this.writingStatus = true  
+        }, 500)
+        setTimeout(()=>{
+            console.log('messaggio')
+            this.writingStatus = false
+            this.contacts[this.current].messages.push(respMessage);
+            this.scrollmessage()
+    
+            
+        }, 2000)
+      }, 
+      searchFilter(){
+        console.log(this.usersFilter)
+        this.contacts.forEach((user) =>{
+            if(!user.name.toLowerCase().includes(this.usersFilter.toLowerCase())){
+                user.visible = false;
+            } else{
+                user.visible = true
+            }
+        })
       }
     },
+    computed:{
+        
+    }
   }).mount('#app')
