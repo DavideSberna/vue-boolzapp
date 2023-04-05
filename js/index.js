@@ -1,3 +1,4 @@
+
 const { createApp } = Vue
 
   createApp({
@@ -178,19 +179,21 @@ const { createApp } = Vue
 
 
       userSelect: {
+        id: '',
         name: '',
         avatar: '',
         messages: '',
         lastSeen: '',
         visible: '',
-        id: '',
+        
       },
       newAdd: {
+        id: '',
         name: '',
         avatar: '',
         messages: '',
         visible: '',
-        id: '',
+       
       },
 
       current: 0,
@@ -199,13 +202,16 @@ const { createApp } = Vue
       writing: 'sto scrivendo...',
       writingStatus: false,
       addUser: false,
+      visible: false,
+      slice: "...",
         
       }
     },
     methods: {
       clickList(items, key){
-        // items.visible = !items.visible;
+        
         this.current = key - 1;
+        this.visible = true
 
 
         const newSelect = this.contacts.find(items => items.id === key)
@@ -217,12 +223,21 @@ const { createApp } = Vue
         })
 
         this.userSelect = {
+            id: newSelect.id,
             name: newSelect.name,
             avatar: newSelect.avatar,
             messages: newSelect.messages,
             visible: newSelect.visible,
-            id: newSelect.id,
+            
         }  
+        // this.save()
+      },
+      sliceLastMessage(index, items){
+       
+        if(this.contacts[index].messages.length > 0){
+            return this.contacts[index].messages[this.contacts[index].messages.length - 1].message.slice(0, 15) + "..."
+        }
+
       },
       scrollmessage(){
         this.$nextTick(() => {
@@ -231,15 +246,12 @@ const { createApp } = Vue
 
       },
       messageSent(){
-        // console.log(this.messageText)
         const newMessage = {
                 date: '19.22.00',
                 message: this.messageText,
                 status: 'sent'
         }
         this.contacts[this.current].messages.push(newMessage)
-        // console.log(newMessage)
-        // console.log(this.contacts[this.current].messages)
 
         const respMessage = {
                 date: '33.22.00',
@@ -257,6 +269,7 @@ const { createApp } = Vue
             this.scrollmessage()
             
         }, 2000)
+        // this.save()
       }, 
       searchFilter(){
         console.log(this.usersFilter)
@@ -289,8 +302,20 @@ const { createApp } = Vue
         console.log(this.contacts)
          
       },
+      returnChat(){
+        this.visible = false
+
+      }
+    //   save(){
+    //     localStorage.setItem("chats", JSON.stringify(this.contacts));
+    //   }
     },
-    computed:{
-        
-    }
+    // created(){
+    //     if(!localStorage.getItem('chats')){
+    //         this.save()
+    //     } else{
+    //         this.contacts = JSON.parse(localStorage.getItem("chats"))
+
+    //     }
+    // }
   }).mount('#app')

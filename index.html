@@ -8,12 +8,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/luxon@3.0.3/build/global/luxon.min.js"></script>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./vue3-emoji-picker/style.css">
     <title>Document</title>
 </head>
 <body>
     <div id="app">
       <div class="wrapper d-flex">
-        <section id="left" class="bg-white border border-top-0 border-secondary-subtle">
+        <section id="left" class="bg-white border border-top-0 border-secondary-subtle col-12 col-sm-5 " :class="visible ? 'd-none d-sm-block':''">
                 <div class="you-user d-flex justify-content-between align-items-center p-2">
                     <ul class="p-0 m-0 d-flex align-items-center">
                         <li class="circle me-2"><img src="./img/avatar_io.jpg" alt=""></li>
@@ -48,7 +49,7 @@
                     </div>
                     <div>
                         <div v-for="(items, index) of contacts" :key="items.id" @click="clickList(items, items.id)" :class="{'d-none' : !items.visible, 'd-block' : items.visible}">
-                                <div class="border border-bottom-0 border-end-0 border-secondary-subtle">
+                                <div class="border border-bottom-0 border-end-0 border-secondary-subtle hover" :class="index === current ? 'bg-gray' : ''">
                                     <ul class="p-0 m-0 d-flex justify-content-between align-items-center p-2">
                                         <li class="d-flex align-items-center">
                                             <span class="d-block circle me-2"><img :src="items.avatar" alt="items"></span>
@@ -56,8 +57,8 @@
                                                 <div>
                                                     <span class="d-block">{{items.name}}</span>
                                                 </div>
-                                                <div v-for="(mex, index) in items.messages">
-                                                    <span  v-if="index === items.messages.length - 1">{{mex.message}}</span>
+                                                <div>
+                                                    <span>{{sliceLastMessage(index, items)}}</span>
                                                 </div>
                                             </div>
                                         </li>
@@ -78,10 +79,11 @@
 
 
 
-        <section id="right" class="bg-right-img">
+        <section id="right" class="bg-right-img col-12 col-sm-7 d-sm-block" :class="visible ? 'd-block':'d-none'">
             
                 <div class="you-user d-flex justify-content-between align-items-center p-2">
                     <ul class="p-0 m-0 d-flex align-items-center">
+                        <li v-if="visible" class="d-sm-none" @click="returnChat"><i class="fa-solid fa-chevron-left"></i></li>
                         <li class="circle me-2"><img :src="contacts[current].avatar" alt=""></li>
                         <li>
                             <span class="d-block">{{contacts[current].name}}</span>
@@ -165,7 +167,7 @@
       </div>
     </div>
 
-
+    <script src="./vue3-emoji-picker/emoji-picker.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.47/vue.global.min.js"></script>
     <script src="./js/index.js"></script>
 </body>

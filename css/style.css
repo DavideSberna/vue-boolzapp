@@ -49,17 +49,10 @@ img{
     height: 100vh;   
 }
 #left{
-    width: 300px;
-    height: 100%;
     overflow-y: auto;
-}
-#right{
-    width: calc(100% - 300px);
-    height: 100%;
 }
 
 #right section{
-    width: 100%;
     height: calc(100vh - 80px);
     overflow-y: auto;
 }
@@ -103,7 +96,10 @@ img{
     color: var(--light-black);
 }
 
-
+/* hover effects */
+.hover:hover{
+    background-color: var(--gray);
+}
 
 
 .send{
