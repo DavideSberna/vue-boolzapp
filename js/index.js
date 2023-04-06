@@ -201,7 +201,7 @@ const { createApp } = Vue
       usersFilter: '',
       writing: 'sto scrivendo...',
       writingStatus: false,
-      addUser: false,
+    //   addUser: false,
       visible: false,
       slice: "...",
         

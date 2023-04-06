@@ -151,18 +151,19 @@ img{
 select{
     width: 0 !important;
 }
-.pop-up{
-    bottom: -42px;
-    right: 10px;
-    z-index: 9000;
-    border-radius: 5px 0 5px 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80px;
-    height: 40px;
-}
 
 
 
 
+
+@media screen and (max-width: 576px) {
+    #right section{
+        height: calc(100vh - 80px);
+        overflow-y: auto;
+    }
+    #app{
+        margin: 0 auto;
+        width: 1400px;
+        height: 100vh;
+    }
+  }
