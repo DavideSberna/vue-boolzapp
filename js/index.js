@@ -263,14 +263,14 @@ const { createApp } = Vue
         setTimeout(()=>{
             console.log(this.writing)
             this.writingStatus = true  
-        }, 500)
+        }, 700)
         setTimeout(()=>{
             console.log('messaggio')
             this.writingStatus = false
             this.contacts[this.current].messages.push(respMessage);
             this.scrollmessage()
             
-        }, 2000)
+        }, 3000)
         this.messageText = ""
         // this.save()
       }, 
