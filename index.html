@@ -25,7 +25,7 @@
                         <li><a href="#"><i class="fa-solid fa-ellipsis-vertical ms-3 me-2"></i></a></li>
                     </ul>
                 </div>
-                <div class="notifications d-flex align-items-center p-2">
+                <div class="notifications d-flex align-items-center">
                     <ul class="p-0 m-0 d-flex align-items-center">
                         <li class="circle-icon bg-white me-2"><i class="fa-solid fa-bell-slash"></i></li>
                         <li>
@@ -36,11 +36,11 @@
                 </div>
                 <section>
                     <div class="p-2">
-                        <div class="input-group input-group-sm mb-2">
+                        <div class="input-group input-group-sm mb-3 mt-3">
                             <span class="input-group-text input-md rounded-start-1" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
                             <input type="text" class="form-control input-md rounded-end-1 border border-light-subtle" placeholder="Cerca o inizia una nuova" v-model="usersFilter" @keyup="searchFilter">
                         </div>
-                        <div class="bg-light-subtle d-flex justify-content-center align-items-center">
+                        <div class="bg-light-subtle d-flex justify-content-center align-items-center mb-3">
                             <a v-if="!addUser" class="m-0" @click="addContact"><i class="fa-solid fa-plus fs-1"></i></a>
                             <a v-else class="m-0" @click="addContact"><i class="fa-solid fa-minus"></i></a>
                         </div>

@@ -92,14 +92,15 @@ img{
 .notifications{
     width: 100%;
     height: 50px;
+    padding: 35px 12px 35px 12px ;
     background-color: var(--light-blue);
 }
 
 .input-sm{
-    height: 25px;
+    height: 32px;
 }
 .input-md{
-    height: 33px;
+    height: 40px;
 }
 
 
