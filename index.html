@@ -37,11 +37,11 @@
                 <section>
                     <div class="p-2">
                         <div class="input-group input-group-sm mb-2">
-                            <span class="input-group-text input-sm rounded-start-1" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
-                            <input type="text" class="form-control input-sm rounded-end-1 border border-light-subtle" placeholder="Cerca o inizia una nuova" v-model="usersFilter" @keyup="searchFilter">
+                            <span class="input-group-text input-md rounded-start-1" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+                            <input type="text" class="form-control input-md rounded-end-1 border border-light-subtle" placeholder="Cerca o inizia una nuova" v-model="usersFilter" @keyup="searchFilter">
                         </div>
                         <div class="bg-light-subtle d-flex justify-content-center align-items-center">
-                            <a v-if="!addUser" class="m-0" @click="addContact"><i class="fa-solid fa-plus"></i></a>
+                            <a v-if="!addUser" class="m-0" @click="addContact"><i class="fa-solid fa-plus fs-1"></i></a>
                             <a v-else class="m-0" @click="addContact"><i class="fa-solid fa-minus"></i></a>
                         </div>
                         <div v-if="addUser">
@@ -107,50 +107,29 @@
             
                 
             <section>
-                <div>
-                    <div>
-                        <div class="p-3">
-                            <div :class="newConversation ? 'd-block':'d-none'" class="first-chat">
-                                <p class="text-center ps-2 pe-2">Inizia una nuova conversazione con: {{contacts[current].name}}</p>
-                            </div>
+                    <div class="p-3">
+                        <div :class="newConversation ? 'd-block':'d-none'" class="first-chat">
+                            <p class="text-center ps-2 pe-2">Inizia una nuova conversazione con: {{contacts[current].name}}</p>
                         </div>
-                        <div v-for="(items, index) in userSelect.messages" ref="scroll">
-                            <div>
-                                <div v-if="items.message.length === 0 ? newConversation = true : newConversation = false "></div>
-                                <div v-if="items.status === 'sent'" class="send" :class="items.message.length === 0 ? 'd-none':''" >
-                                    <div class="position-relative">
-                                        <div class="p-1">
-                                            <div class="w-100">
-                                                <div class="position-absolute select-container bg-white">
-                                                    <select>
-                                                        <option value="elimina" @click="deleteMessage(index)">Elimina</option>
-                                                    </select>
-                                                </div>
-                                                <div class="mt-1">
-                                                    <p class="m-0 p-0">{{items.message}}</p>
-                                                </div>
+                    </div>
+                    <div v-for="(items, index) in userSelect.messages" ref="scroll">
+                        <div>
+                            <div v-if="items.message.length === 0 ? newConversation = true : newConversation = false "></div>
+                            <div v-if="items.status === 'sent'" class="send" :class="items.message.length === 0 ? 'd-none':''" >
+                                <div class="position-relative">
+                                    <div class="p-1">
+                                        <div class="w-100">
+                                            <div class="position-absolute select-container bg-white">
+                                                <select>
+                                                    <option value=""></option>
+                                                    <option value="elimina" @click="deleteMessage(index)">Elimina</option>
+                                                </select>
                                             </div>
-                                            <div>
-                                                <div class="w-100 mt-2">
-                                                    <p class="text-end m-0 p-0 text-body-tertiary">{{items.date}}</p>
-                                                </div>
+                                            <div class="mt-1">
+                                                <p class="m-0 p-0">{{items.message}}</p>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div v-if="items.status === 'received'" class="received" :class="items.message.length === 0 ? 'd-none':''">
-                                    <div class="position-relative">
-                                        <div class="p-1">
-                                            <div class="w-100">
-                                                <div class="position-absolute select-container bg-light-green">
-                                                    <select>
-                                                        <option value="elimina" @click="deleteMessage(index)">Elimina</option>
-                                                    </select>
-                                                </div>
-                                                <div class="mt-1">
-                                                    <p class="m-0 p-0">{{items.message}}</p>
-                                                </div>
-                                            </div>
+                                        <div>
                                             <div class="w-100 mt-2">
                                                 <p class="text-end m-0 p-0 text-body-tertiary">{{items.date}}</p>
                                             </div>
@@ -158,12 +137,30 @@
                                     </div>
                                 </div>
                             </div>
-                            
+                            <div v-if="items.status === 'received'" class="received" :class="items.message.length === 0 ? 'd-none':''">
+                                <div class="position-relative">
+                                    <div class="p-1">
+                                        <div class="w-100">
+                                            <div class="position-absolute select-container bg-light-green">
+                                                <select>
+                                                    <option value=""></option>
+                                                    <option value="elimina" @click="deleteMessage(index)">Elimina</option>
+                                                </select>
+                                            </div>
+                                            <div class="mt-1">
+                                                <p class="m-0 p-0">{{items.message}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="w-100 mt-2">
+                                            <p class="text-end m-0 p-0 text-body-tertiary">{{items.date}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
             </section>
-            <div class="d-flex justify-content-center align-items-center you-user p-2">
+            <div class="d-flex justify-content-center align-items-center you-user p-2 fixed">
                 <div class="me-4">
                     <a href="#"><i class="fa-regular fa-face-smile light-black"></i></a>
                 </div>
