@@ -48,7 +48,7 @@
                             <form>
                                 <div class="input-group-sm mb-3">
                                     <label for="nameUser" class="form-label fw-bold">Nome Contatto</label>
-                                    <input type="text" class="form-control border border-light-subtle" v-model="newContact">
+                                    <input type="text" class="form-control input-md border border-light-subtle" v-model="newContact">
                                 </div>
                                 <button type="button" class="btn btn-primary btn-sm" @click="saveContact">Salva</button>
                             </form>
@@ -94,7 +94,7 @@
                         <li class="circle me-2"><img :src="contacts[current].avatar" alt=""></li>
                         <li>
                             <span class="d-block fw-bold text-dark">{{contacts[current].name}}</span>
-                            <span class="text-body-tertiary" v-if="!writingStatus">Ultimo accesso: {{contacts[current].messages[contacts[current].messages.length - 1].date}}</span>   
+                            <span class="text-body-tertiary" v-if="!writingStatus">Ultimo accesso: {{contacts[current].messages[contacts[current].messages.length - 1].date.slice(10, 16)}}</span>   
                             <span class="text-body-tertiary" v-else>{{writing}}</span>   
                         </li>
                     </ul>

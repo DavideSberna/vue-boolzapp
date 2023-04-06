@@ -68,7 +68,7 @@ img{
 }
 
 #right section{
-    height: calc(100% - 100px);
+    height: calc(100% - 120px);
     overflow-y: auto;
 }
 #app{
@@ -86,7 +86,7 @@ img{
 
 .you-user{
     width: 100%;
-    height: 50px;
+    height: 60px;
     background-color: var(--gray);
 }
 .notifications{
@@ -207,7 +207,7 @@ select{
         bottom: 0;
     }
     #right section{
-        height: calc(100% - 50px);
+        height: calc(100% - 60px);
          
     }
   }
