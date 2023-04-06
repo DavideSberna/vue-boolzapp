@@ -31,7 +31,7 @@ body{
     font-size: var(--icon-size);
 }
 
-ul li, a, span{
+ul li, a, p, label,  span{
     font-size: 12px;
 }
 
@@ -73,7 +73,7 @@ img{
 }
 #app{
     margin: 0 auto;
-    width: 1400px;
+    width: 1500px;
     height: 80vh;
 }
 
@@ -104,7 +104,10 @@ img{
 
 /* color - background */
 .bg-white{
-    background-color: var(--white);
+    background-color: var(--white) !important;
+}
+.bg-light-green{
+    background-color: var(--light-green) !important;
 }
 .bg-gray{
     background-color: var(--gray);
@@ -136,22 +139,52 @@ img{
     justify-content: start;
     
 }
+
+.select-container{
+    right: -7px;
+    top: -7px;
+    width: 20px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+
+}
+
+
 .send div:nth-child(1){
     background-color: var(--light-green);
     width: fit-content;
-    border-radius: 0.5em;
+    max-width: 300px;
+    border-radius: 0.3em;
 
 }
 .received div:nth-child(1){
     background-color: var(--white);;
     width: fit-content;
-    border-radius: 0.5em;
+    max-width: 300px;
+    border-radius: 0.3em;
 }
 
 select{
-    width: 0 !important;
+    width: 16px;
+    height: 16px;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0; 
 }
 
+
+.first-chat{
+    background-color: #8ed9fca6;
+    border-radius: 5px;
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 20px;
+}
 
 
 

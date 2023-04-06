@@ -17,13 +17,12 @@
                 <div class="you-user d-flex justify-content-between align-items-center p-2">
                     <ul class="p-0 m-0 d-flex align-items-center">
                         <li class="circle me-2"><img src="./img/avatar_io.jpg" alt=""></li>
-                        <li>Sofia</li>
-                    </ul>
+                        <li class="fw-bold">Sofia</li>
+                    </ul> 
                     <ul class="p-0 m-0 d-flex">
                         <li><a href="#"><i class="fa-solid fa-rotate-right"></i></a></li>
                         <li><a href="#"><i class="fa-solid fa-message ms-3"></i></a></li>
-                        <li><a href="#"><i class="fa-solid fa-ellipsis-vertical ms-3 me-2" @click="openAddContact"></i></a></li>
-                        
+                        <li><a href="#"><i class="fa-solid fa-ellipsis-vertical ms-3 me-2"></i></a></li>
                     </ul>
                 </div>
                 <div class="notifications d-flex align-items-center p-2">
@@ -37,32 +36,42 @@
                 </div>
                 <section>
                     <div class="p-2">
-                        <div class="input-group mb-2">
-                            <span class="input-group-text input-sm rounded-0" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
-                            <input type="text" class="form-control input-sm rounded-0" placeholder="Cerca o inizia una nuova" v-model="usersFilter" @keyup="searchFilter">
+                        <div class="input-group input-group-sm mb-2">
+                            <span class="input-group-text input-sm rounded-start-1" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+                            <input type="text" class="form-control input-sm rounded-end-1 border border-light-subtle" placeholder="Cerca o inizia una nuova" v-model="usersFilter" @keyup="searchFilter">
                         </div>
-                        <div class="bg-light-subtle">
-                            <a class="m-0" @click="addContact"><i class="fa-solid fa-plus"></i>Aggiungi nuovo contatto</a>
+                        <div class="bg-light-subtle d-flex justify-content-center align-items-center">
+                            <a v-if="!addUser" class="m-0" @click="addContact"><i class="fa-solid fa-plus"></i></a>
+                            <a v-else class="m-0" @click="addContact"><i class="fa-solid fa-minus"></i></a>
+                        </div>
+                        <div v-if="addUser">
+                            <form>
+                                <div class="input-group-sm mb-3">
+                                    <label for="nameUser" class="form-label fw-bold">Nome Contatto</label>
+                                    <input type="text" class="form-control border border-light-subtle" v-model="newContact">
+                                </div>
+                                <button type="button" class="btn btn-primary btn-sm" @click="saveContact">Salva</button>
+                            </form>
                         </div>
                     </div>
                     <div>
                         <div v-for="(items, index) of contacts" :key="items.id" @click="clickList(items, items.id)" :class="{'d-none' : !items.visible, 'd-block' : items.visible}">
-                                <div class="border border-bottom-0 border-end-0 border-secondary-subtle hover" :class="index === current ? 'bg-gray' : ''">
+                                <div class="border border-bottom-0 border-end-0 border-light-subtle hover" :class="index === current ? 'bg-gray' : ''">
                                     <ul class="p-0 m-0 d-flex justify-content-between align-items-center p-2">
                                         <li class="d-flex align-items-center">
                                             <span class="d-block circle me-2"><img :src="items.avatar" alt="items"></span>
                                             <div>
                                                 <div>
-                                                    <span class="d-block">{{items.name}}</span>
+                                                    <span class="d-block fw-bold">{{items.name}}</span>
                                                 </div>
                                                 <div>
-                                                    <span>{{sliceLastMessage(index, items)}}</span>
+                                                    <span class="text-body-tertiary">{{sliceLastMessage(index)}}</span>
                                                 </div>
                                             </div>
                                         </li>
                                         <li>
                                             <div v-for="(data, index) in items.messages">
-                                                <p v-if="index === items.messages.length - 1">{{data.date}}</p>
+                                                <p v-if="index === items.messages.length - 1" class="text-body-tertiary">{{data.date.slice(10, 16)}}</p>
                                             </div>
                                         </li>
                                     </ul>
@@ -79,14 +88,14 @@
 
         <section id="right" class="bg-right-img col-12 col-sm-7 d-sm-block" :class="visible ? 'd-block':'d-none'">
             
-                <div class="you-user d-flex justify-content-between align-items-center p-2">
+                <div class="you-user d-flex justify-content-between align-items-center">
                     <ul class="p-0 m-0 d-flex align-items-center">
-                        <li v-if="visible" class="d-sm-none" @click="returnChat"><i class="fa-solid fa-chevron-left"></i></li>
+                        <li v-if="visible" class="d-sm-none" @click="returnChat"><i class="fa-solid fa-chevron-left ps-3 pe-3"></i></li>
                         <li class="circle me-2"><img :src="contacts[current].avatar" alt=""></li>
                         <li>
-                            <span class="d-block">{{contacts[current].name}}</span>
-                            <span v-if="!writingStatus">Ultimo accesso: {{contacts[current]?.messages[contacts[current].messages.length - 1].date}}</span>   
-                            <span v-if="writingStatus">{{writing}}</span>   
+                            <span class="d-block fw-bold text-dark">{{contacts[current].name}}</span>
+                            <span class="text-body-tertiary" v-if="!writingStatus">Ultimo accesso: {{contacts[current].messages[contacts[current].messages.length - 1].date}}</span>   
+                            <span class="text-body-tertiary" v-else>{{writing}}</span>   
                         </li>
                     </ul>
                     <ul class="p-0 m-0 d-flex">
@@ -96,51 +105,60 @@
                     </ul>
                 </div>
             
-            
+                
             <section>
                 <div>
-                    <div >
+                    <div>
+                        <div class="p-3">
+                            <div :class="newConversation ? 'd-block':'d-none'" class="first-chat">
+                                <p class="text-center ps-2 pe-2">Inizia una nuova conversazione con: {{contacts[current].name}}</p>
+                            </div>
+                        </div>
                         <div v-for="(items, index) in userSelect.messages" ref="scroll">
-                            <div v-if="items.status === 'sent'" class="send">
-                                <div>
-                                    <div>
-                                        <div>
-                                            <div class="p-1">
-                                                {{items.message}}
-                                            </div>
-                                            <div class="p-1">
-                                                <select class="form-select" aria-label="select example">
-                                                    <option value="elimina" @click="deleteMessage(index)">Elimina</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="p-1">
-                                                {{items.date}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div v-if="items.status === 'received'" class="received">
-                                <div>
-                                    <div>
-                                        <div>
-                                            <div class="p-1">
-                                                {{items.message}}
-                                            </div>
-                                            <div class="p-1">
-                                                <select class="form-select" aria-label="select example">
-                                                    <option value="elimina" @click="deleteMessage(index)">Elimina</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                            <div>
+                                <div v-if="items.message.length === 0 ? newConversation = true : newConversation = false "></div>
+                                <div v-if="items.status === 'sent'" class="send" :class="items.message.length === 0 ? 'd-none':''" >
+                                    <div class="position-relative">
                                         <div class="p-1">
-                                            {{items.date}}
+                                            <div class="w-100">
+                                                <div class="position-absolute select-container bg-white">
+                                                    <select>
+                                                        <option value="elimina" @click="deleteMessage(index)">Elimina</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mt-1">
+                                                    <p class="m-0 p-0">{{items.message}}</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="w-100 mt-2">
+                                                    <p class="text-end m-0 p-0 text-body-tertiary">{{items.date}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div v-if="items.status === 'received'" class="received" :class="items.message.length === 0 ? 'd-none':''">
+                                    <div class="position-relative">
+                                        <div class="p-1">
+                                            <div class="w-100">
+                                                <div class="position-absolute select-container bg-light-green">
+                                                    <select>
+                                                        <option value="elimina" @click="deleteMessage(index)">Elimina</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mt-1">
+                                                    <p class="m-0 p-0">{{items.message}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="w-100 mt-2">
+                                                <p class="text-end m-0 p-0 text-body-tertiary">{{items.date}}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

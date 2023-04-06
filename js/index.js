@@ -8,7 +8,7 @@ const { createApp } = Vue
         contacts: [
           {
               id:1,
-              name: 'Michele',
+              name: 'Michael Bonera',
               avatar: './img/avatar_1.jpg',
               visible: true,
               messages: [
@@ -31,7 +31,7 @@ const { createApp } = Vue
           },
           {
               id:2,
-              name: 'Fabio',
+              name: 'Fabio Fazio',
               avatar: './img/avatar_2.jpg',
               visible: true,
               messages: [
@@ -54,7 +54,7 @@ const { createApp } = Vue
           },
           {
               id:3,
-              name: 'Samuele',
+              name: 'Alfio Bardolla',
               avatar: './img/avatar_3.jpg',
               visible: true,
               messages: [
@@ -77,7 +77,7 @@ const { createApp } = Vue
           },
           {
               id:4,
-              name: 'Alessandro B.',
+              name: 'Mario Draghi',
               avatar: './img/avatar_4.jpg',
               visible: true,
               messages: [
@@ -113,7 +113,7 @@ const { createApp } = Vue
           },
           {
               id:6,
-              name: 'Claudia',
+              name: 'Alfonso Galante',
               avatar: './img/avatar_5.jpg',
               visible: true,
               messages: [
@@ -160,7 +160,7 @@ const { createApp } = Vue
               messages: [
                   {
                       date: '10/01/2020 15:30:55',
-                      message: 'Ciao, andiamo a mangiare la pizza stasera?',
+                      message: 'Ci mangiamo una pizza?',
                       status: 'received'
                   },
                   {
@@ -187,22 +187,19 @@ const { createApp } = Vue
         visible: '',
         
       },
-      newAdd: {
-        id: '',
-        name: '',
-        avatar: '',
-        messages: '',
-        visible: '',
-       
-      },
 
+
+      newAdd: '',
       current: 0,
       messageText: '',
       usersFilter: '',
+      newContact: '',
       writing: 'sto scrivendo...',
       writingStatus: false,
-    //   addUser: false,
+      addUser: false,
       visible: false,
+      newConversation: false,
+      deleteSms: false,
       slice: "...",
         
       }
@@ -230,13 +227,18 @@ const { createApp } = Vue
             visible: newSelect.visible,
             
         }  
+        this.addUser = false
         // this.save()
       },
-      sliceLastMessage(index, items){
-       
-        if(this.contacts[index].messages.length > 0){
-            return this.contacts[index].messages[this.contacts[index].messages.length - 1].message.slice(0, 15) + "..."
+      sliceLastMessage(index){
+         
+
+        if(this.contacts[index].messages[this.contacts[index].messages.length - 1].message.length > 15){
+            return this.contacts[index].messages[this.contacts[index].messages.length - 1].message.slice(0, 20) + "..."
+        } else {
+            return this.contacts[index].messages[this.contacts[index].messages.length - 1].message
         }
+        
 
       },
       scrollmessage(){
@@ -269,6 +271,7 @@ const { createApp } = Vue
             this.scrollmessage()
             
         }, 2000)
+        this.messageText = ""
         // this.save()
       }, 
       searchFilter(){
@@ -281,30 +284,43 @@ const { createApp } = Vue
             }
         })
       },
+      
       deleteMessage(index){
         this.userSelect.messages.splice(index, 1)
       },
-      openAddContact(){
-        this.addUser = !this.addUser
-      },
       addContact(){
-        console.log("add")
+        this.addUser = !this.addUser   
+      },
+      saveContact(){
+
+        
         this.addUser = false
+
         this.newAdd = {
-            name: '',
-            avatar: '',
-            messages: '',
-            lastSeen: '',
-            visible: '',
-            id: '',
+            id:this.contacts.length + 1,
+            name: this.newContact,
+            avatar: './img/avatar_8.jpg',
+            visible: true,
+            messages: [
+                {
+                    date: '',
+                    message: '',
+                    status: 'received'
+                },
+                {
+                    date: '',
+                    message: '',
+                    status: 'sent'
+                },
+            ],
         }
         this.contacts.push(this.newAdd)
         console.log(this.contacts)
+        this.newContact = ''
          
       },
       returnChat(){
         this.visible = false
-
       }
     //   save(){
     //     localStorage.setItem("chats", JSON.stringify(this.contacts));
