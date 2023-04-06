@@ -249,14 +249,14 @@ const { createApp } = Vue
       },
       messageSent(){
         const newMessage = {
-                date: '19.22.00',
+                date: '17/01/2021 15:37:25',
                 message: this.messageText,
                 status: 'sent'
         }
         this.contacts[this.current].messages.push(newMessage)
 
         const respMessage = {
-                date: '33.22.00',
+                date: '11/01/2020 12:31:55',
                 message: 'ok',
                 status: 'received'
         }
