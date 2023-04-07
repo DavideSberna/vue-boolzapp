@@ -220,7 +220,7 @@ const DateTime = luxon.DateTime;
 
        
         this.addUser = false
-        // this.save()
+        this.save()
       },
       sliceLastMessage(index){
   
@@ -274,10 +274,11 @@ const DateTime = luxon.DateTime;
             this.writingStatus = false
             this.contacts[this.current].messages.push(respMessage);
             this.scrollmessage()
+            this.save()
             
         }, 3000)
         this.messageText = ""
-        // this.save()
+        this.save()
       }, 
       randomArrMex(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -330,17 +331,17 @@ const DateTime = luxon.DateTime;
       },
       returnChat(){
         this.visible = false
+      },
+      save(){
+        localStorage.setItem("chats", JSON.stringify(this.contacts));
       }
-    //   save(){
-    //     localStorage.setItem("chats", JSON.stringify(this.contacts));
-    //   }
     },
-    // created(){
-    //     if(!localStorage.getItem('chats')){
-    //         this.save()
-    //     } else{
-    //         this.contacts = JSON.parse(localStorage.getItem("chats"))
+    created(){
+        if(!localStorage.getItem('chats')){
+            this.save()
+        } else{
+            this.contacts = JSON.parse(localStorage.getItem("chats"))
 
-    //     }
-    // }
+        }
+    }
   }).mount('#app')
