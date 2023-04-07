@@ -19,7 +19,7 @@
                 <div class="you-user d-flex justify-content-between align-items-center p-2">
                     <ul class="p-0 m-0 d-flex align-items-center">
                         <li class="circle me-2"><img src="./img/avatar_io.jpg" alt=""></li>
-                        <li class="fw-bold">Sofia</li>
+                        <li class="fw-bold">Davide Sberna</li>
                     </ul> 
                     <ul class="p-0 m-0 d-flex">
                         <li><a href="#"><i class="fa-solid fa-rotate-right"></i></a></li>
@@ -110,7 +110,14 @@
                     <ul class="p-0 m-0 d-flex">
                         <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i></a></li>
                         <li><a href="#"><i class="fa-solid fa-paperclip ms-3"></i></a></li>
-                        <li><a href="#"><i class="fa-solid fa-ellipsis-vertical ms-3 me-2"></i></a></li>
+                        <li class="position-relative">
+                            <a href="#"><i class="fa-solid fa-ellipsis-vertical ms-3 me-2" @click="deleteContact = !deleteContact"></i></a>
+                            <div class="position-absolute pos-abs-drop" v-if="deleteContact">
+                                <ul class="p-0 m-0 bg-white rounded-2 shadow">
+                                    <li class="ps-3 pe-3 pt-1 pb-1 text-danger hover border-bottom" @click="deleteContactUser()">Elimina</li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             

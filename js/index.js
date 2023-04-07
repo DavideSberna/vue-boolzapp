@@ -179,6 +179,16 @@ const DateTime = luxon.DateTime;
           }
       ],
 
+      randomImageUser:[
+        './img/avatar_8.jpg',
+        './img/avatar_7.jpg',
+        './img/avatar_5.jpg',
+        './img/avatar_4.jpg',
+        './img/avatar_2.jpg',
+        './img/avatar_3.jpg',
+        './img/avatar_1.jpg',
+      ],
+
       
       randomMessage: [
         'Stasera non mi sento bene, sto a casa a guardare Netflix',
@@ -208,6 +218,8 @@ const DateTime = luxon.DateTime;
       openPopUp: false,
       slice: "...",
       dateNow: DateTime.local().toFormat('dd/MM/yyyy HH:mm:ss'),
+      randomImage: '',
+      deleteContact: false,
         
       }
     },
@@ -297,6 +309,10 @@ const DateTime = luxon.DateTime;
       deleteMessage(index){
          this.contacts[this.current].messages.splice(index, 1)
         console.log(index)
+      },
+      deleteContactUser(){
+        this.contacts.splice(this.current, 1);
+        this.deleteContact = false
         
       },
       addContact(){
@@ -305,11 +321,12 @@ const DateTime = luxon.DateTime;
       saveContact(){
 
         this.addUser = false
+        this.randomImage = this.randomArrMex(1, this.randomImageUser.length - 1)
 
         this.newAdd = {
             id:this.contacts.length + 1,
             name: this.newContact,
-            avatar: './img/avatar_8.jpg',
+            avatar: this.randomImageUser[this.randomImage],
             visible: true,
             messages: [
                 {
@@ -327,6 +344,7 @@ const DateTime = luxon.DateTime;
         this.contacts.push(this.newAdd)
         console.log(this.contacts)
         this.newContact = ''
+        this.save()
          
       },
       returnChat(){
