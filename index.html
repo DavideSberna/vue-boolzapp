@@ -112,18 +112,19 @@
                             <p class="text-center ps-2 pe-2">Inizia una nuova conversazione con: {{contacts[current].name}}</p>
                         </div>
                     </div>
-                    <div v-for="(items, index) in userSelect.messages" ref="scroll">
+                    <div v-for="(items, index) in contacts[current].messages" ref="scroll">
                         <div>
                             <div v-if="items.message.length === 0 ? newConversation = true : newConversation = false "></div>
                             <div v-if="items.status === 'sent'" class="send" :class="items.message.length === 0 ? 'd-none':''" >
                                 <div class="position-relative">
                                     <div class="p-1">
                                         <div class="w-100">
-                                            <div class="position-absolute select-container bg-white">
-                                                <select>
-                                                    <option value=""></option>
-                                                    <option value="elimina" @click="deleteMessage(index)">Elimina</option>
-                                                </select>
+                                            <div class="select-container position-absolute">
+                                                <a><i class="fa-solid fa-chevron-down" @click="openPopUp = !openPopUp"></i></a>
+                                                <ul class="p-0 m-0 bg-white p-1 rounded-1" :class="{'d-none': !openPopUp}">
+                                                    <li @click="deleteMessage(index)">Elimina</li>
+                                                    <li>Spunta</li>
+                                                </ul>
                                             </div>
                                             <div class="mt-1">
                                                 <p class="m-0 p-0">{{items.message}}</p>
@@ -141,11 +142,12 @@
                                 <div class="position-relative">
                                     <div class="p-1">
                                         <div class="w-100">
-                                            <div class="position-absolute select-container bg-light-green">
-                                                <select>
-                                                    <option value=""></option>
-                                                    <option value="elimina" @click="deleteMessage(index)">Elimina</option>
-                                                </select>
+                                            <div class="select-container position-absolute">
+                                                <a><i class="fa-solid fa-chevron-down" @click="openPopUp = !openPopUp"></i></a>
+                                                <ul class="p-0 m-0 bg-white p-1 rounded-1" :class="{'d-none': !openPopUp}">
+                                                    <li @click="deleteMessage(index)">Elimina</li>
+                                                    <li>Spunta</li>
+                                                </ul>
                                             </div>
                                             <div class="mt-1">
                                                 <p class="m-0 p-0">{{items.message}}</p>

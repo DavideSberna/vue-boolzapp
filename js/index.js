@@ -200,6 +200,7 @@ const { createApp } = Vue
       visible: false,
       newConversation: false,
       deleteSms: false,
+      openPopUp: false,
       slice: "...",
         
       }
@@ -211,27 +212,27 @@ const { createApp } = Vue
         this.visible = true
 
 
-        const newSelect = this.contacts.find(items => items.id === key)
-        let hours = ""
-        newSelect.messages.forEach((data) =>{
-            let dataComplete = data.date.split(" ");
-            hours = dataComplete[dataComplete.length - 1]
-            console.log(hours)
-        })
+        // const newSelect = this.contacts.find(items => items.id === key)
+        // let hours = ""
+        // newSelect.messages.forEach((data) =>{
+        //     let dataComplete = data.date.split(" ");
+        //     hours = dataComplete[dataComplete.length - 1]
+        //     console.log(hours)
+        // })
 
-        this.userSelect = {
-            id: newSelect.id,
-            name: newSelect.name,
-            avatar: newSelect.avatar,
-            messages: newSelect.messages,
-            visible: newSelect.visible,
+        // this.userSelect = {
+        //     id: newSelect.id,
+        //     name: newSelect.name,
+        //     avatar: newSelect.avatar,
+        //     messages: newSelect.messages,
+        //     visible: newSelect.visible,
             
-        }  
+        // }  
         this.addUser = false
         // this.save()
       },
       sliceLastMessage(index){
-         
+  
 
         if(this.contacts[index].messages[this.contacts[index].messages.length - 1].message.length > 15){
             return this.contacts[index].messages[this.contacts[index].messages.length - 1].message.slice(0, 20) + "..."
@@ -287,13 +288,14 @@ const { createApp } = Vue
       
       deleteMessage(index){
         this.userSelect.messages.splice(index, 1)
+        console.log(index)
+        
       },
       addContact(){
         this.addUser = !this.addUser   
       },
       saveContact(){
 
-        
         this.addUser = false
 
         this.newAdd = {
