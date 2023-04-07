@@ -27,10 +27,12 @@
                 </div>
                 <div class="notifications d-flex align-items-center">
                     <ul class="p-0 m-0 d-flex align-items-center">
-                        <li class="circle-icon bg-white me-2"><i class="fa-solid fa-bell-slash"></i></li>
+                        <li v-if="!notification" class="circle-icon bg-white me-2"><i class="fa-solid fa-bell-slash"></i></li>
+                        <li v-else class="circle-icon bg-white me-2"><i class="fa-solid fa-bell"></i></li>
                         <li>
                             <span class="d-block">Ricevi notifiche di nuovi messaggi</span>
-                            <span class="d-block"><a href="#">Attiva notifiche desktop</a></span>
+                            <span v-if="!notification" class="d-block"><a href="#" @click="notification = true">Attiva notifiche desktop</a></span>
+                            <span v-else class="d-block"><a href="#" @click="notification = false">Disattiva notifiche desktop</a></span>
                         </li>
                     </ul>  
                 </div>
@@ -121,13 +123,13 @@
                                         <div class="w-100">
                                              
                                             <div class="mt-1">
-                                                <a class="pos-abs-chevron position-absolute"><i class="fa-solid fa-chevron-down" @click="items.drop = !items.drop" :class="{'rotate':items.drop }"></i></a>
+                                                <a class="pos-abs-chevron position-absolute"><i class="fa-solid fa-chevron-down p-1" @click="items.drop = !items.drop" :class="{'rotate':items.drop }"></i></a>
                                                 <ul class="p-0 m-0 bg-white p-1 rounded-1 position-absolute pos-abs-drop" :class="{'d-none': !items.drop}">
                                                     <li @click="deleteMessage(index)">Elimina</li>
                                                     <li @click="items.check = !items.check">Spunta</li>
                                                 </ul>
-                                                <a :class="{'d-none': !items.check}" class="pos-abs-heart position-absolute"><i class="fa-solid fa-heart"></i></a>
-                                                <p class="m-0 p-0">{{items.message}}</p>
+                                                <a :class="{'d-none': !items.check}" class="pos-abs-heart position-absolute"><i class="fa-solid fa-heart p-1 text-danger"></i></a>
+                                                <p class="mt-2 p-0">{{items.message}}</p>
                                             </div>
                                         </div>
                                         <div>

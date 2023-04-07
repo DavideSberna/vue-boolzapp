@@ -195,7 +195,9 @@ const { createApp } = Vue
       usersFilter: '',
       newContact: '',
       writing: 'sto scrivendo...',
+      blankMessage: 'Inizia una nuova conversazione',
       writingStatus: false,
+      notification: false,
       addUser: false,
       visible: false,
       newConversation: false,
@@ -234,13 +236,14 @@ const { createApp } = Vue
       sliceLastMessage(index){
   
 
-        if(this.contacts[index].messages[this.contacts[index].messages.length - 1].message.length > 15){
+        if(this.contacts[index].messages[this.contacts[index].messages.length - 1].message.length === 0){
+            return this.blankMessage
+        } else if(this.contacts[index].messages[this.contacts[index].messages.length - 1].message.length > 15){
             return this.contacts[index].messages[this.contacts[index].messages.length - 1].message.slice(0, 20) + "..."
-        } else {
+        } else{
             return this.contacts[index].messages[this.contacts[index].messages.length - 1].message
         }
-        
-
+ 
       },
       scrollmessage(){
         this.$nextTick(() => {
@@ -287,7 +290,7 @@ const { createApp } = Vue
       },
       
       deleteMessage(index){
-        this.contacts[this.current].messages.splice(index, 1)
+         this.contacts[this.current].messages.splice(index, 1)
         console.log(index)
         
       },
