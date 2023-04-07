@@ -119,14 +119,14 @@
                                 <div class="position-relative" :class="items.message.length === 0 ? 'd-none':''">
                                     <div class="p-1">
                                         <div class="w-100">
-                                            <div class="select-container position-absolute">
-                                                <a><i class="fa-solid fa-chevron-down" @click="openPopUp = !openPopUp"></i></a>
-                                                <ul class="p-0 m-0 bg-white p-1 rounded-1" :class="{'d-none': !openPopUp}">
-                                                    <li @click="deleteMessage(index)">Elimina</li>
-                                                    <li>Spunta</li>
-                                                </ul>
-                                            </div>
+                                             
                                             <div class="mt-1">
+                                                <a class="pos-abs-chevron position-absolute"><i class="fa-solid fa-chevron-down" @click="items.drop = !items.drop" :class="{'rotate':items.drop }"></i></a>
+                                                <ul class="p-0 m-0 bg-white p-1 rounded-1 position-absolute pos-abs-drop" :class="{'d-none': !items.drop}">
+                                                    <li @click="deleteMessage(index)">Elimina</li>
+                                                    <li @click="items.check = !items.check">Spunta</li>
+                                                </ul>
+                                                <a :class="{'d-none': !items.check}" class="pos-abs-heart position-absolute"><i class="fa-solid fa-heart"></i></a>
                                                 <p class="m-0 p-0">{{items.message}}</p>
                                             </div>
                                         </div>
