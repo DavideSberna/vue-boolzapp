@@ -97,7 +97,7 @@ const DateTime = luxon.DateTime;
           },
           {
               id:5,
-              name: 'Alessandro L.',
+              name: 'Simone Gazzani',
               avatar: './img/avatar_5.jpg',
               visible: true,
               messages: [
@@ -138,7 +138,7 @@ const DateTime = luxon.DateTime;
           },
           {
               id:7,
-              name: 'Federico',
+              name: 'Nathan Rothschild',
               avatar: './img/avatar_7.jpg',
               visible: true,
               messages: [
@@ -156,7 +156,7 @@ const DateTime = luxon.DateTime;
           },
           {
               id:8,
-              name: 'Davide',
+              name: 'Robertino Speranza',
               avatar: './img/avatar_8.jpg',
               visible: true,
               messages: [
