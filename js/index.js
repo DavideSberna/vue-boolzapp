@@ -1,6 +1,8 @@
 
 const { createApp } = Vue
 
+const DateTime = luxon.DateTime;
+
   createApp({
     data() {
       return {
@@ -174,251 +176,22 @@ const { createApp } = Vue
                       status: 'received'
                   }
               ],
-          },
-          {
-              id:8,
-              name: 'Davide',
-              avatar: './img/avatar_8.jpg',
-              visible: true,
-              messages: [
-                  {
-                      date: '10/01/2020 15:30:55',
-                      message: 'Ci mangiamo una pizza?',
-                      status: 'received'
-                  },
-                  {
-                      date: '10/01/2020 15:50:00',
-                      message: 'No, l\'ho già mangiata ieri, ordiniamo sushi!',
-                      status: 'sent'
-                  },
-                  {
-                      date: '10/01/2020 15:51:00',
-                      message: 'OK!!',
-                      status: 'received'
-                  }
-              ],
-          },
-          {
-              id:8,
-              name: 'Davide',
-              avatar: './img/avatar_8.jpg',
-              visible: true,
-              messages: [
-                  {
-                      date: '10/01/2020 15:30:55',
-                      message: 'Ci mangiamo una pizza?',
-                      status: 'received'
-                  },
-                  {
-                      date: '10/01/2020 15:50:00',
-                      message: 'No, l\'ho già mangiata ieri, ordiniamo sushi!',
-                      status: 'sent'
-                  },
-                  {
-                      date: '10/01/2020 15:51:00',
-                      message: 'OK!!',
-                      status: 'received'
-                  }
-              ],
-          },
-          {
-              id:8,
-              name: 'Davide',
-              avatar: './img/avatar_8.jpg',
-              visible: true,
-              messages: [
-                  {
-                      date: '10/01/2020 15:30:55',
-                      message: 'Ci mangiamo una pizza?',
-                      status: 'received'
-                  },
-                  {
-                      date: '10/01/2020 15:50:00',
-                      message: 'No, l\'ho già mangiata ieri, ordiniamo sushi!',
-                      status: 'sent'
-                  },
-                  {
-                      date: '10/01/2020 15:51:00',
-                      message: 'OK!!',
-                      status: 'received'
-                  }
-              ],
-          },
-          {
-              id:8,
-              name: 'Davide',
-              avatar: './img/avatar_8.jpg',
-              visible: true,
-              messages: [
-                  {
-                      date: '10/01/2020 15:30:55',
-                      message: 'Ci mangiamo una pizza?',
-                      status: 'received'
-                  },
-                  {
-                      date: '10/01/2020 15:50:00',
-                      message: 'No, l\'ho già mangiata ieri, ordiniamo sushi!',
-                      status: 'sent'
-                  },
-                  {
-                      date: '10/01/2020 15:51:00',
-                      message: 'OK!!',
-                      status: 'received'
-                  }
-              ],
-          },
-          {
-              id:8,
-              name: 'Davide',
-              avatar: './img/avatar_8.jpg',
-              visible: true,
-              messages: [
-                  {
-                      date: '10/01/2020 15:30:55',
-                      message: 'Ci mangiamo una pizza?',
-                      status: 'received'
-                  },
-                  {
-                      date: '10/01/2020 15:50:00',
-                      message: 'No, l\'ho già mangiata ieri, ordiniamo sushi!',
-                      status: 'sent'
-                  },
-                  {
-                      date: '10/01/2020 15:51:00',
-                      message: 'OK!!',
-                      status: 'received'
-                  }
-              ],
-          },
-          {
-              id:8,
-              name: 'Davide',
-              avatar: './img/avatar_8.jpg',
-              visible: true,
-              messages: [
-                  {
-                      date: '10/01/2020 15:30:55',
-                      message: 'Ci mangiamo una pizza?',
-                      status: 'received'
-                  },
-                  {
-                      date: '10/01/2020 15:50:00',
-                      message: 'No, l\'ho già mangiata ieri, ordiniamo sushi!',
-                      status: 'sent'
-                  },
-                  {
-                      date: '10/01/2020 15:51:00',
-                      message: 'OK!!',
-                      status: 'received'
-                  }
-              ],
-          },
-          {
-              id:8,
-              name: 'Davide',
-              avatar: './img/avatar_8.jpg',
-              visible: true,
-              messages: [
-                  {
-                      date: '10/01/2020 15:30:55',
-                      message: 'Ci mangiamo una pizza?',
-                      status: 'received'
-                  },
-                  {
-                      date: '10/01/2020 15:50:00',
-                      message: 'No, l\'ho già mangiata ieri, ordiniamo sushi!',
-                      status: 'sent'
-                  },
-                  {
-                      date: '10/01/2020 15:51:00',
-                      message: 'OK!!',
-                      status: 'received'
-                  }
-              ],
-          },
-          {
-              id:8,
-              name: 'Davide',
-              avatar: './img/avatar_8.jpg',
-              visible: true,
-              messages: [
-                  {
-                      date: '10/01/2020 15:30:55',
-                      message: 'Ci mangiamo una pizza?',
-                      status: 'received'
-                  },
-                  {
-                      date: '10/01/2020 15:50:00',
-                      message: 'No, l\'ho già mangiata ieri, ordiniamo sushi!',
-                      status: 'sent'
-                  },
-                  {
-                      date: '10/01/2020 15:51:00',
-                      message: 'OK!!',
-                      status: 'received'
-                  }
-              ],
-          },
-          {
-              id:8,
-              name: 'Davide',
-              avatar: './img/avatar_8.jpg',
-              visible: true,
-              messages: [
-                  {
-                      date: '10/01/2020 15:30:55',
-                      message: 'Ci mangiamo una pizza?',
-                      status: 'received'
-                  },
-                  {
-                      date: '10/01/2020 15:50:00',
-                      message: 'No, l\'ho già mangiata ieri, ordiniamo sushi!',
-                      status: 'sent'
-                  },
-                  {
-                      date: '10/01/2020 15:51:00',
-                      message: 'OK!!',
-                      status: 'received'
-                  }
-              ],
-          },
-          {
-              id:8,
-              name: 'Davide',
-              avatar: './img/avatar_8.jpg',
-              visible: true,
-              messages: [
-                  {
-                      date: '10/01/2020 15:30:55',
-                      message: 'Ci mangiamo una pizza?',
-                      status: 'received'
-                  },
-                  {
-                      date: '10/01/2020 15:50:00',
-                      message: 'No, l\'ho già mangiata ieri, ordiniamo sushi!',
-                      status: 'sent'
-                  },
-                  {
-                      date: '10/01/2020 15:51:00',
-                      message: 'OK!!',
-                      status: 'received'
-                  }
-              ],
-          },
+          }
+      ],
+
+      
+      randomMessage: [
+        'Stasera non mi sento bene, sto a casa a guardare Netflix',
+        'Non mi va, giocherò un pò alla play',
+        'Vai via',
+        'Non voglio più sentirti',
+        'Ho solo bisogno di tempo per me...',
+        'Per pasquetta tutto pronto',
+        'Hai problemi con la macchina? Ci pensa mio cuggino'
       ],
 
 
-      userSelect: {
-        id: '',
-        name: '',
-        avatar: '',
-        messages: '',
-        lastSeen: '',
-        visible: '',
-        
-      },
-
-
+      singleMessage:'',
       newAdd: '',
       current: 0,
       messageText: '',
@@ -434,6 +207,7 @@ const { createApp } = Vue
       deleteSms: false,
       openPopUp: false,
       slice: "...",
+      dateNow: DateTime.local().toFormat('dd/MM/yyyy HH:mm:ss'),
         
       }
     },
@@ -444,22 +218,7 @@ const { createApp } = Vue
         this.visible = true
 
 
-        // const newSelect = this.contacts.find(items => items.id === key)
-        // let hours = ""
-        // newSelect.messages.forEach((data) =>{
-        //     let dataComplete = data.date.split(" ");
-        //     hours = dataComplete[dataComplete.length - 1]
-        //     console.log(hours)
-        // })
-
-        // this.userSelect = {
-        //     id: newSelect.id,
-        //     name: newSelect.name,
-        //     avatar: newSelect.avatar,
-        //     messages: newSelect.messages,
-        //     visible: newSelect.visible,
-            
-        // }  
+       
         this.addUser = false
         // this.save()
       },
@@ -482,16 +241,28 @@ const { createApp } = Vue
 
       },
       messageSent(){
+
+        if (this.messageText.trim().length < 1) { 
+            return false
+        }
         const newMessage = {
-                date: '17/01/2021 15:37:25',
+                date: this.dateNow,
                 message: this.messageText,
                 status: 'sent'
         }
         this.contacts[this.current].messages.push(newMessage)
 
+        this.singleMessage = this.randomArrMex(1, this.randomMessage.length - 1)
+
+        if(this.messageText.length > 0){
+            console.log("è vero")
+        }
+
+        
+
         const respMessage = {
-                date: '11/01/2020 12:31:55',
-                message: 'ok',
+                date: this.dateNow,
+                message: this.randomMessage[this.singleMessage],
                 status: 'received'
         }
         setTimeout(()=>{
@@ -508,6 +279,9 @@ const { createApp } = Vue
         this.messageText = ""
         // this.save()
       }, 
+      randomArrMex(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    },
       searchFilter(){
         console.log(this.usersFilter)
         this.contacts.forEach((user) =>{
