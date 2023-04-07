@@ -14,6 +14,7 @@
     <div id="app">
       <div class="wrapper d-flex container p-0 shadow">
         <section id="left" class="bg-white border border-top-0 border-secondary-subtle col-12 col-sm-5 " :class="visible ? 'd-none d-sm-block':''">
+            <section>
                 <div class="you-user d-flex justify-content-between align-items-center p-2">
                     <ul class="p-0 m-0 d-flex align-items-center">
                         <li class="circle me-2"><img src="./img/avatar_io.jpg" alt=""></li>
@@ -36,51 +37,56 @@
                         </li>
                     </ul>  
                 </div>
-                <section>
-                    <div class="p-2">
-                        <div class="input-group input-group-sm mb-3 mt-3">
-                            <span class="input-group-text input-md rounded-start-1" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
-                            <input type="text" class="form-control input-md rounded-end-1 border border-light-subtle" placeholder="Cerca o inizia una nuova" v-model="usersFilter" @keyup="searchFilter">
-                        </div>
-                        <div class="bg-light-subtle d-flex justify-content-center align-items-center mb-3">
+            </section>
+            <section>
+                <div class="p-2">
+                    <div class="input-group input-group-sm mb-3 mt-3">
+                        <span class="input-group-text input-md rounded-start-1" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <input type="text" class="form-control input-md rounded-end-1 border border-light-subtle" placeholder="Cerca o inizia una nuova" v-model="usersFilter" @keyup="searchFilter">
+                    </div>
+                </div>
+            </section>
+            <section class="list-chat">
+                <div>
+                    <div class="ps-2 pe-2">
+                        <div class="d-flex justify-content-center align-items-center mb-3">
                             <a v-if="!addUser" class="m-0" @click="addContact"><i class="fa-solid fa-plus fs-1"></i></a>
-                            <a v-else class="m-0" @click="addContact"><i class="fa-solid fa-minus"></i></a>
+                            <a v-else class="m-0" @click="addContact"><i class="fa-solid fa-minus fs-1"></i></a>
                         </div>
                         <div v-if="addUser">
                             <form>
                                 <div class="input-group-sm mb-3">
                                     <label for="nameUser" class="form-label fw-bold">Nome Contatto</label>
-                                    <input type="text" class="form-control input-md border border-light-subtle" v-model="newContact">
+                                    <input type="text" class="form-control input-md border border-light-subtle d-inline-block w-75" v-model="newContact">
+                                    <button type="button" class="btn btn-primary input-md align-baseline ms-1" @click="saveContact">Salva</button>
                                 </div>
-                                <button type="button" class="btn btn-primary btn-sm" @click="saveContact">Salva</button>
                             </form>
                         </div>
                     </div>
-                    <div>
-                        <div v-for="(items, index) of contacts" :key="items.id" @click="clickList(items, items.id)" :class="{'d-none' : !items.visible, 'd-block' : items.visible}">
-                                <div class="border border-bottom-0 border-end-0 border-light-subtle hover" :class="index === current ? 'bg-gray' : ''">
-                                    <ul class="p-0 m-0 d-flex justify-content-between align-items-center p-2">
-                                        <li class="d-flex align-items-center">
-                                            <span class="d-block circle me-2"><img :src="items.avatar" alt="items"></span>
-                                            <div>
-                                                <div>
-                                                    <span class="d-block fw-bold">{{items.name}}</span>
-                                                </div>
-                                                <div>
-                                                    <span class="text-body-tertiary">{{sliceLastMessage(index)}}</span>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div v-for="(data, index) in items.messages">
-                                                <p v-if="index === items.messages.length - 1" class="text-body-tertiary">{{data.date.slice(10, 16)}}</p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
+                    <div v-for="(items, index) of contacts" :key="items.id" @click="clickList(items, items.id)" :class="{'d-none' : !items.visible, 'd-block' : items.visible}">
+                        <div class="border border-bottom-0 border-end-0 border-light-subtle hover" :class="index === current ? 'bg-gray' : ''">
+                            <ul class="p-0 m-0 d-flex justify-content-between align-items-center p-2">
+                                <li class="d-flex align-items-center">
+                                    <span class="d-block circle me-2"><img :src="items.avatar" alt="items"></span>
+                                    <div>
+                                        <div>
+                                            <span class="d-block fw-bold">{{items.name}}</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-body-tertiary">{{sliceLastMessage(index)}}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div v-for="(data, index) in items.messages">
+                                        <p v-if="index === items.messages.length - 1" class="text-body-tertiary">{{data.date.slice(10, 16)}}</p>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
         </section>
 
  
@@ -119,7 +125,7 @@
                             <div v-if="items.message.length === 0 ? newConversation = true : newConversation = false "></div>
                             <div :class="{'send': items.status === 'sent', 'received': items.status === 'received' } ">
                                 <div class="position-relative" :class="items.message.length === 0 ? 'd-none':''">
-                                    <div class="p-1">
+                                    <div class="p-2">
                                         <div class="w-100">
                                              
                                             <div class="mt-1">
